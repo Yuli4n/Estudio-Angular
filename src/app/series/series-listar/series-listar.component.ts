@@ -14,6 +14,8 @@ export class SeriesListarComponent implements OnInit {
 
   series: Array<Serie> = [];
   promedio:number=0;
+  selectedSerie!: SerieDetail;
+  selected: boolean = false;
 
   getSeries(){
     
@@ -30,6 +32,11 @@ export class SeriesListarComponent implements OnInit {
       promedio+=serie.seasons;
     }
     return promedio/series.length;
+  }
+
+  onSelected(serie: SerieDetail): void {
+    this.selected = true;
+    this.selectedSerie = serie;
   }
 
   ngOnInit() {

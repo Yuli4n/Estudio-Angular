@@ -15,13 +15,21 @@ export class SeriesDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute ,private seriesService: SeriesService) { }
 
-  ngOnInit() {
-  }
-
   getSerie(){
-    this.seriesService.getSeries().subscribe(apiData=>{
+    this.seriesService.getSerie(this.serieid).subscribe(apiData=>{
       this.serieDetail = apiData;
     })
   }
+
+  ngOnInit() {
+    if (this.serieDetail == undefined){
+      this.serieid = this.route.snapshot.paramMap.get('id')!
+      if (this.serieid) {
+        this.getSerie();
+      }
+    }
+    console.log('Datos del serieDetail:', this.serieDetail);
+  }
+
 
 }
